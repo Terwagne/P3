@@ -9,8 +9,9 @@
 import Foundation
 class Fighter: Characters {
     init(name: String) {
-        super.init(charactersName: name,  lifePoint: 100, weapon: Sword())
+        super.init(charactersName: name, lifePoint: 100, weapon: Sword(), type : "Fighter", isDead: false)
     }
+
 }// end of the Class
 var fighter = Fighter(name: " ")
 

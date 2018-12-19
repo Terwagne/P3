@@ -16,4 +16,10 @@ team2.createTeam()
 team1.printTeams()
 team1.attackOrCareTeam1()
 team2.attackOrCareTeam2()
-game.Winner()
+while true {
+    game.checkWinnerTeam1()
+    team1.attackOrCareTeam1()
+    game.checkWinnerTeam2()
+    team2.attackOrCareTeam2()
+
+}

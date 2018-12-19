@@ -9,7 +9,7 @@
 import Foundation
 class Colossus: Characters {
     init(name: String) {
-        super.init(charactersName: name, lifePoint: 150, weapon: Stick())
+        super.init(charactersName: name, lifePoint: 150, weapon: Stick(), type: "Colossus", isDead: false)
     }
 }// end of the Class
 var colossus = Colossus(name: " ")

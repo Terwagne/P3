@@ -60,33 +60,34 @@ class Team {
                 compositionTeam.append(Fighter(name: warriorName))
             case 2: // colossus
                 print(" a Colossus")
-               compositionTeam.append(Colossus(name: warriorName))
+                compositionTeam.append(Colossus(name: warriorName))
                 
             case 3: // dwarft
                 print("a Dwarft")
                 compositionTeam.append(Dwarft(name: warriorName))
             case 4: // magus
                 print(" a Magus")
-              compositionTeam.append(Magus(name: warriorName))
+                compositionTeam.append(Magus(name: warriorName))
             default:
                 print("Please choose a character")
             }
         }
         
     }
+    
     func printTeams() {
         print ("Your teams are made up and have the following names : \(team1.nameOfThePlayer) against \(team2.nameOfThePlayer)"
             + "\n here are their composition :"
             + "\n \(team1.nameOfThePlayer)")
         for i in 0..<team1.compositionTeam.count {
             let warrior = team1.compositionTeam[i]
-            print(" A \(team1.compositionTeam[i]) named \(warrior.charactersName) that own a \(warrior.weapon) and have \(warrior.lifePoint) lifePoint")
+            print(" A \(warrior.type) named \(warrior.charactersName) that own a \(warrior.weapon.weaponName) and have \(warrior.lifePoint) lifePoint")
             
         }
         print("\(team2.nameOfThePlayer)")
         for i in  0..<team2.compositionTeam.count {
             let warrior = team2.compositionTeam[i]
-            print(" A \(team2.compositionTeam[i]) named \(warrior.charactersName) that own a \(warrior.weapon) and have \(warrior.lifePoint) lifePoint")
+            print(" A \(warrior.type) named \(warrior.charactersName) that own a \(warrior.weapon.weaponName) and have \(warrior.lifePoint) lifePoint")
             
             
         }
@@ -95,7 +96,7 @@ class Team {
     // Attack or Care
     
     func attackOrCareTeam1() {
-        repeat {
+        
         print(" ok \(team1.nameOfThePlayer), What do you want to do ?"
             + "\n1 attack ?"
             + "\n2 care ?")
@@ -104,7 +105,8 @@ class Team {
         if let choice = readLine() {
             switch choice {
             case "1":
-               game.fightingTeam1()
+             game.fightingTeam1()
+             
                 
             case "2":
                game.careTeam1()
@@ -112,23 +114,20 @@ class Team {
                 print("I did not understant")
             }
         }
-      
-    }while deathTeams()
+        }
         
-    }
+    
 
     func attackOrCareTeam2() {
-        repeat{
+   
         print(" ok \(team2.nameOfThePlayer), What do you want to do ?"
             + "\n1 attack ?"
             + "\n2 care ?")
         
-        
         if let choice = readLine() {
             switch choice {
             case "1":
-              game.fightingTeam2()
-                
+                game.fightingTeam2()
                 
             case "2":
                 game.careTeam2()
@@ -136,49 +135,54 @@ class Team {
                 print("I did not understant")
             }
         }
-    }while deathTeams()
-    }
+        }
+    
     
     func statTeam1() {
-        for i in 0..<team1.compositionTeam.count {
-       let warrior = team1.compositionTeam[i]
+        
+        for i in  0..<team1.compositionTeam.count {
+            let warrior = team1.compositionTeam[i]
+            if warrior.isDead == false{
+                if  warrior is Fighter  && fighter.lifePoint >= 1 {
+                print(" 1 : A Fighter named \(warrior.charactersName) that own a \(fighter.weapon.weaponName) and have \(fighter.lifePoint) lifePoint") }
+            
+                if warrior is Colossus && colossus.lifePoint >= 1 {
+                print(" 2 : A Colossus named \(warrior.charactersName) that own a \(colossus.weapon.weaponName) and have \(colossus.lifePoint) lifePoint") }
 
-            if warrior.lifePoint >= 0 {
-            print(" A \(team1.compositionTeam[i]) named \(warrior.charactersName) that own a \(warrior.weapon) and have \(warrior.lifePoint) lifePoint")
-           }else{
-                print(" Your \(warrior.charactersName) is dead")
+                if warrior is Dwarft && dwarft.lifePoint >= 1 {
+                print(" 3 : A Dwarft named \(warrior.charactersName) that own a \(dwarft.weapon.weaponName) and have \(dwarft.lifePoint) lifePoint") }
+         
+//            }else{
+//                print(" your \(warrior.type) is dead ")
+//            }
             }
     }
     }
         func statTeam2 () {
-        for i in  0..<team2.compositionTeam.count {
+      
+            for i in  0..<team2.compositionTeam.count {
             let warrior = team2.compositionTeam[i]
-            if warrior.lifePoint >= 0 {
-                print(" A \(team2.compositionTeam[i]) named \(warrior.charactersName) that own a \(warrior.weapon) and have \(warrior.lifePoint) lifePoint")
-            }else {
-                print(" Your \(warrior.charactersName) is dead")
-                
-            }
-    }
+        
+            if  warrior is Fighter  && fighter.lifePoint >= 1 {
+                print(" 1 : A Fighter named \(warrior.charactersName) that own a \(fighter.weapon.weaponName) and have \(fighter.lifePoint) lifePoint") }
+
+            if warrior is Colossus && colossus.lifePoint >= 1 {
+                print(" 2 : A Colossus named \(warrior.charactersName) that own a \(colossus.weapon.weaponName) and have \(colossus.lifePoint) lifePoint") }
             
+            if warrior is Dwarft && dwarft.lifePoint >= 1 {
+                print(" 3 : A Dwarft named \(warrior.charactersName) that own a \(dwarft.weapon.weaponName) and have \(dwarft.lifePoint) lifePoint")
+ 
+//            }else{
+//                print ("your \(warrior.type) is dead")
+//                }
+//
     }
-    
-    
-    func deathTeams() -> Bool {
-        var isDead = false
-        for warrior in compositionTeam {
-            if warrior.lifePoint <= 0 {
-                isDead = true
-            } else {
-                return false
             }
-        }
-        return isDead
     }
-    
-    
     
 }//End of the class
 
 var team1 = Team(nameOfThePlayer: "")
 var team2 = Team(nameOfThePlayer: "")
+
+

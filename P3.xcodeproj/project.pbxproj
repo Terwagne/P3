@@ -118,8 +118,8 @@
 			children = (
 				CDFFD46F21C44D2200D0CF72 /* Characters.swift */,
 				CDFFD46A21C44D2100D0CF72 /* Colossus.swift */,
-				CDFFD46E21C44D2200D0CF72 /* Dwarft.swift */,
 				CDFFD47021C44D2200D0CF72 /* Fighter.swift */,
+				CDFFD46E21C44D2200D0CF72 /* Dwarft.swift */,
 				CDFFD46921C44D2100D0CF72 /* Magus.swift */,
 			);
 			path = Characters;
