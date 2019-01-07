@@ -9,7 +9,9 @@
 import Foundation
 class Magus: Characters {
     init(name: String) {
-        super.init(charactersName: name, lifePoint: 20, weapon: Potion(), type: "Magus", isDead: false)
+        super.init(charactersName: name, weapon: potion, lifePoint: 20, type: "Magus" )
     }
 }// end of the Class
 var magus = Magus(name: "")
+
+

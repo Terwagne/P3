@@ -9,367 +9,425 @@
 import Foundation
 class Game {
     
-    var warriorA: Characters
-    var warriorB: Characters
-    var warriorC: Characters
-    var warriorD: Characters
-   
-    
-    init(warriorA: Characters, warriorB: Characters, warriorC:Characters, warriorD:Characters) {
+    var warriorA: Characters //userchoice attaquant team1
+    var warriorB: Characters //userchoice attaqué team1
+    var warriorC: Characters //userchoice attaquant team2
+    var warriorD : Characters  //userchoice attaquant team2
+
+    init(warriorA: Characters, warriorB: Characters, warriorC: Characters, warriorD: Characters) {
        self.warriorA = warriorA
-        self.warriorB = warriorB
+       self.warriorB = warriorB
         self.warriorC = warriorC
         self.warriorD = warriorD
+   
     }
     
     // start a new game
-    
-    func presentMenu() {
-        print("Hello and welcome to the DA IOS game specially designed for you.")
+    // present the rules of the game
+func presentMenu() {
+        print("Hello and welcome to the DA IOS game specially designed for you."
+            + "\n Here are the rules: you must form a team of 3 characters."
+            + "\n The mage can not attack or be attacked. His role is to care for the members of your teams. "
+            + "\n You fight between fighters. The winner is the one who killed the opposing team's fighters."
+            + "\n However, this game has a few surprises .....")
+    print("==================================================================================================")
+        team1.namePlayer1()
+        team1.createTeam()
+        team2.namePlayer2()
+        team2.createTeam()
+        team1.printTeams() 
+        
+      
     }
     
-    
-    
-    //  on affiche les combattants en vie
-    
+   
+// Launch the game and fighting session for player one
     
 func fightingTeam1 (){
-
+ //  Show fighters in life
+    //    random for the chest
+    chestTeam1(character: warriorA)
     print("Please, choose your attacker")
-    team1.statTeam1 ()
-        
+    team1.statsTeam1()
     print("Enter the number of the character you choose")
-  
-    //      on récupère le choix et on l'affiche
 
+    
+    //We pick up the choice and display it
     if let warriorTeam1 = readLine(){
         switch warriorTeam1 {
         case "1":
-            print("You choose your fighter")
-            warriorA = fighter
-        
-        case "2":
-            print("You choose your colossus")
-            warriorA = colossus
- 
-        case "3":
-            print("You choose your dwarft)")
-            warriorA = dwarft
+            if team1.compositionTeam[1] == nil {
+                print("you couldn' choose this warrior")
+                fightingTeam1()
+            }else{
+            print("You choose your Fighter 👿")
+            warriorA = team1.compositionTeam[1]!
+            
+            }
+            case "2":
+            if team1.compositionTeam[2] == nil {
+                print("you couldn' choose this warrior")
+                fightingTeam1()
+            }else{
+            print("You choose your Colossus 👹")
+            warriorA = team1.compositionTeam[2]!
+            
+            }
+            case "3":
+            if team1.compositionTeam[3] == nil {
+                print("you couldn' choose this warrior")
+                fightingTeam1()
+            }else{
+                print("You choose your Dwarft 🤡")
+                warriorA = team1.compositionTeam[3]!
+            
+            }
+        default:
+            break
+        }
+    }
 
+    
+// Opponents' fighters are displayed
+    print("Who would you like to attack ?")
+    team2.statsTeam2()
+    print(" enter the number of the character you want to attack")
+    
+    
+//We pick up the choice and display it
+    if let attackedTeam2 = readLine() {
+    
+        switch attackedTeam2 {
+        case "1":
+            print("You choose his Fighter 👿")
+            warriorB = team2.compositionTeam[1]!
+            warriorA.attackTeam1(warriorB: warriorB)
+                if warriorB.lifePoint < 1 {
+                    team2.compositionTeam.removeValue(forKey: 1)
+                    team2.checkWinnerTeam2()
+                
+            }else{
+                print("\(team2.nameOfThePlayer), it's your turn !")
+            }
+
+        case "2":
+            print("You choose his Colossus 👹")
+            warriorB = team2.compositionTeam[2]!
+            warriorA.attackTeam1(warriorB: warriorB)
+                if warriorB.lifePoint < 1 {
+                    team2.compositionTeam.removeValue(forKey: 2)
+                    team2.checkWinnerTeam2()
+            }else{
+                print("\(team2.nameOfThePlayer), it's your turn !")
+            }
+
+        case "3":
+            print("You choose his Dwarft🤡")
+            warriorB = team2.compositionTeam[3]!
+            warriorA.attackTeam1(warriorB: warriorB)
+                if warriorB.lifePoint < 1 {
+                    team2.compositionTeam.removeValue(forKey: 3)
+                    team2.checkWinnerTeam2()
+                
+            }else{
+                print("\(team2.nameOfThePlayer), it's your turn !")
+                    
+            }
             
         default:
             break
         }
     }
-   
-    // on affiche les combattants de la partie adverse
-    print("Who would you like to attack ?")
-    
-        team2.statTeam2()
-    
-    
-    print(" enter the number of the character you want to attack")
-    
-
-    
-    // on récupère le choix et on l'affiche
-    if let attackedTeam2 = readLine() {
-    
-        
-        switch attackedTeam2 {
-        case "1":
-            print("You choose his Fighter")
-
-            if warriorA is Fighter{
-                fighter.lifePoint = fighter.lifePoint - sword.damage
-
-            }else if warriorA is Colossus{
-               fighter.lifePoint = fighter.lifePoint - stick.damage
-
-            }else if warriorA is Dwarft {
-                fighter.lifePoint = fighter.lifePoint - ax.damage
-            }
-            if fighter.lifePoint >= 1 {
-            print("his Fighter have now \(fighter.lifePoint) lifepoint")
-            }else{
-                print("Yes ! his fighter is dead")
-                fighter.isDead = true
-                }
-
-        case "2":
-            print("You choose his colossus")
-
-            if warriorA is Fighter {
-                colossus.lifePoint = colossus.lifePoint - sword.damage
-
-            }else if warriorA is Colossus {
-                colossus.lifePoint = colossus.lifePoint - stick.damage
-
-            }else if warriorA is Dwarft {
-                colossus.lifePoint = colossus.lifePoint - ax.damage
-            }
-            if colossus.lifePoint >= 1 {
-            print("his colossus have now \(colossus.lifePoint) lifepoint")
-            }else{
-                print("Yes ! his colossus is dead")
-                colossus.isDead = true
-            }
-
-
-        case "3":
-            print("You choose his drawft")
-
-            if warriorA is Fighter  {
-                dwarft.lifePoint = dwarft.lifePoint - sword.damage
-
-            }else if warriorA is Colossus {
-                dwarft.lifePoint = dwarft.lifePoint - stick.damage
-
-            }else if warriorA is Dwarft {
-                dwarft.lifePoint = dwarft.lifePoint - ax.damage
-            }
-            if dwarft.lifePoint >= 1 {
-            print("his dwarft have now \(dwarft.lifePoint) lifepoint")
-            }else{
-                print ("Yes ! his dwarft is dead")
-                dwarft.isDead = true
-                }
-
-        default:
-            break
-        }
     }
-    }
-//     on affiche les combattants choisis et en vie
+// Launch the game and fighting session for player two
 
-    func fightingTeam2() {
+func fightingTeam2() {
+    //    random for the chest
+    chestTeam2(character: warriorC)
     print("Please, choose your attacker")
-       team2.statTeam2()
+    team2.statsTeam2()
     print(" enter the number of the character you want to attack")
-        
-    // on récupère le choix et on l'affiche
+    
+    
+
+// We pick up the choice and display it
     if let warriorTeam2 = readLine() {
         switch warriorTeam2 {
         case "1":
-            print("You choose your Fighter")
-            warriorC = fighter
- 
+            if team2.compositionTeam[1] == nil {
+                print("you couldn' choose this warrior")
+                fightingTeam2()
+            }else{
+                print("You choose your Fighter 👿")
+                warriorC = team2.compositionTeam[1]!
+            
+            
+            }
         case "2":
-            print("You choose your Colossus")
-            warriorC = colossus
+            if team2.compositionTeam[2] == nil {
+                print("you couldn' choose this warrior")
+                fightingTeam2()
+            }else{
+                print("You choose your Colossus 👹")
+                warriorC = team2.compositionTeam[2]!
+            
+            }
         case "3":
-            print("You choose your Drawft")
-            warriorC = dwarft
-           
+            if team2.compositionTeam[3] == nil {
+                print("you couldn' choose this warrior")
+                fightingTeam2()
+            }else{
+            print("You choose your Drawft 🤡")
+            warriorC = team2.compositionTeam[3]!
+    
+            }
         default:
             break
         }
     }
     
-// on affiche les combattants de la partie adverse
+// Opponents' fighters are displayed
     print("Who would you like to attack ?")
-            team1.statTeam1()
+        team1.statsTeam1()
     print(" enter the number of the character you want to attack")
-      
 
-    //  on récupère le choix et on l'affiche
+
+//  We pick up the choice and display it
     if let attackedTeam1 = readLine(){
-    
+
         switch attackedTeam1 {
         case "1":
-            print("You choose his Fighter")
-            if warriorC is Fighter {
-                fighter.lifePoint = fighter.lifePoint - sword.damage
-
-
-            }else if warriorC is Colossus {
-                fighter.lifePoint = fighter.lifePoint - stick.damage
-
-
-            }else if warriorC is Dwarft {
-                fighter.lifePoint = fighter.lifePoint - ax.damage
-                          }
-            if fighter.lifePoint >= 1 {
-            print("his Fighter have now \(fighter.lifePoint) lifepoint ")
+            print("You choose his Fighter 👿")
+            warriorD = team1.compositionTeam[1]!
+            warriorC.attackTeam2(warriorD: warriorD)
+                if warriorD.lifePoint < 1 {
+                    team1.compositionTeam.removeValue(forKey: 1)
+                    team1.checkWinnerTeam1()
+                
             }else{
-               print ("Yes ! his fighter is dead")
-                fighter.isDead = true
+                print(" \(team1.nameOfThePlayer), it's your turn!")
+            }
+    
 
-                }
-        
         case "2":
-            print("You choose his Colossus")
-            if warriorC is Fighter{
-                colossus.lifePoint = colossus.lifePoint - sword.damage
+            print("You choose his Colossus 👹")
+            warriorD = team1.compositionTeam[2]!
+            warriorC.attackTeam2(warriorD: warriorD)
+                if warriorD.lifePoint < 1 {
+                    team1.compositionTeam.removeValue(forKey: 2)
+                    team1.checkWinnerTeam1()
                 
-            }else if warriorC is Colossus {
-                colossus.lifePoint = colossus.lifePoint - stick.damage
-                
-            }else if warriorC is Dwarft {
-                colossus.lifePoint = colossus.lifePoint - ax.damage
-                
-            }
-            if colossus.lifePoint >= 1 {
-            print("his Colossus have now \(colossus.lifePoint) lifepoint ")
             }else{
-                print("Yes ! his Colossus is dead")
-                colossus.isDead = true
+                print(" \(team1.nameOfThePlayer), it's your turn!")
             }
+       
         case "3":
-            print("You choose his Drawft")
-            
-            if warriorC is Fighter {
-                dwarft.lifePoint = dwarft.lifePoint - sword.damage
+            print("You choose his Drawft 🤡")
+            warriorD = team1.compositionTeam[3]!
+            warriorC.attackTeam2(warriorD: warriorD)
+                if warriorD.lifePoint < 1 {
+                    team1.compositionTeam.removeValue(forKey: 3)
+                    team1.checkWinnerTeam1()
                 
-            }else if warriorC is Colossus{
-                dwarft.lifePoint = dwarft.lifePoint - stick.damage
-                
-            }else if  warriorC is Dwarft{
-                dwarft.lifePoint = dwarft.lifePoint - ax.damage
-                
-            }
-            if dwarft.lifePoint >= 1 {
-            print("his Dwarft have now \(dwarft.lifePoint) lifepoint")
             }else{
-                print ("Yes ! His dwarft is dead")
-                dwarft.isDead = true
+                print(" \(team1.nameOfThePlayer), it's your turn!")
+                    
             }
-            
+
         default:
             break
         }
-        }
-        
-        
-
     }
-    
-    
-    
-// care
+    }
+// Function to health the team1 fighters's
 func careTeam1() {
     
     print("Who would you care for ?")
-    team1.statTeam1()
-        print(" enter the number of the character you want to health")
-    
+    team1.statsTeam1()
+    print(" enter the number of the character you want to health")
+  
     
     if let choice = readLine(){
         switch choice {
         case "1":
-            print("Your fighter")
-            fighter.lifePoint = fighter.lifePoint + potion.damage
-            if fighter.lifePoint >= 1 {
-            print (" Your fighter has now \(fighter.lifePoint) lifepoint")
+            print("Your fighter 👿")
+            if team1.compositionTeam[1] == nil {
+                print("Your fighter is dead, you can not resuscitate him")
             }else{
-                print("Sorry, your fiighter is dead")
+                    team1.compositionTeam[1]!.lifePoint = team1.compositionTeam[1]!.lifePoint + potion.damage
+                if  team1.compositionTeam[1]!.lifePoint >= 100 {
+                    print(" Stop !, you are a fighter, you can't have more of 100 lifepoint so")
+                    team1.compositionTeam[1]!.lifePoint = 100
+                print (" Your fighter has now \(team2.compositionTeam[1]!.lifePoint) lifepoints")
+                    
+                }
+          
             }
         case "2":
-            print("Your colossus")
-            colossus.lifePoint = colossus.lifePoint + potion.damage
-            if colossus.lifePoint >= 1 {
-            print ("Your colossus has now \(colossus.lifePoint) lifepoint")
+            print("Your colossus 👹")
+            if team1.compositionTeam[2] == nil {
+                print("Your colossus is dead, you can not resuscitate him")
+            
             }else{
-                print("Sorry your colossus is dead")
+                team1.compositionTeam[2]!.lifePoint = team1.compositionTeam[2]!.lifePoint + potion.damage
+                if  team1.compositionTeam[2]!.lifePoint >= 150 {
+                    print(" Stop !, you are a colossus, you can't have more of 150 lifepoint so")
+                    team1.compositionTeam[2]!.lifePoint = 150
+                print (" Your colossus has now \(team1.compositionTeam[2]!.lifePoint) lifepoints")
                 }
+            }
         case "3" :
-            print("dwarft")
-            dwarft.lifePoint = dwarft.lifePoint + potion.damage
-                if dwarft.lifePoint >= 1 {
-                print ("Your dwarft has now \(dwarft.lifePoint) lifepoint ")
-                }else{
-                    print ("Sorry Your Drawft is dead")
+            print("Your dwarft 🤡")
+            if team1.compositionTeam[3] == nil {
+                print("Your dwarft is dead, you can not resuscitate him")
+            }else{
+                team1.compositionTeam[3]!.lifePoint = team1.compositionTeam[3]!.lifePoint + potion.damage
+                if  team1.compositionTeam[3]!.lifePoint >= 30 {
+                    print(" Stop !, you are a dwarft, you can't have more of 30 lifepoints so")
+                    team1.compositionTeam[3]!.lifePoint = 30
+                print (" Your dwarft has now \(team1.compositionTeam[3]!.lifePoint) lifepoints")
                 }
+            }
         default:
             break
         }
     }
-        }//        fonction care Team1
+        }//  End of the fonction care Team1
     
-//    care
+//  function to health the team2 fighter's
     func careTeam2() {
-        
         print("Who would you care for ?")
-        team2.statTeam2()
-            
-            print(" enter the number of the character you want to health")
+        team2.statsTeam2()
+         print(" enter the number of the character you want to health")
         
         if let choice = readLine(){
             switch choice {
             case "1":
-                print("Your fighter")
-                fighter.lifePoint = fighter.lifePoint + potion.damage
-                if fighter.lifePoint >= 1 {
-                print (" Your fighter has now \(fighter.lifePoint) lifepoint")
+                print("Your fighter 👿")
+                if team2.compositionTeam[1] == nil {
+                    print("Your fighter is dead, you can not resuscitate him")
+                
                 }else{
-                    print("Sorry your fighter is dead")
-                }
+                    team2.compositionTeam[1]!.lifePoint = team2.compositionTeam[1]!.lifePoint + potion.damage
+                    if  team2.compositionTeam[1]!.lifePoint >= 100{
+                     print(" Stop !, you are a fighter, you can't have more of 100 lifepoints so")
+                        team2.compositionTeam[1]!.lifePoint = 100
+                      print (" Your fighter has now \(team2.compositionTeam[1]!.lifePoint) lifepoints")
+                    }
+                    }
             case "2":
-                print("Your colossus")
-                colossus.lifePoint = colossus.lifePoint + potion.damage
-                if colossus.lifePoint >= 1 {
-                    print (" Your colossus has now \(colossus.lifePoint) lifepoint")
+                print("Your colossus 👹")
+                if team2.compositionTeam[2] == nil {
+                    print("Your colossus is dead, you can not resuscitate him")
+                
                 }else{
-                    print("Sorry your colossus is dead")
+                    team2.compositionTeam[2]!.lifePoint = team2.compositionTeam[2]!.lifePoint + potion.damage
+                    if  team2.compositionTeam[2]!.lifePoint >= 150 {
+                        print(" Stop !, you are a colossus, you can't have more of 150 lifepoints so")
+                        team2.compositionTeam[2]!.lifePoint = 150
+                    print (" Your colossus has now \(team2.compositionTeam[2]!.lifePoint) lifepoints")
+                    }
                 }
             case "3" :
-                print("dwarft")
-                if dwarft.lifePoint >= 1 {
-                    dwarft.lifePoint = dwarft.lifePoint + potion.damage
-                print ("Your dwarft has now \(dwarft.lifePoint) lifepoint ")
+                print("Your dwarft 🤡")
+                if team2.compositionTeam[3] == nil {
+                    print("Your dwarft is dead, you can not resuscitate him")
+                
                 }else{
-                    print("Sorry Your Drawft is dead")
+                    
+                team2.compositionTeam[3]!.lifePoint = team2.compositionTeam[3]!.lifePoint + potion.damage
+                if  team2.compositionTeam[3]!.lifePoint >= 30 {
+                    print(" Stop !, you are a dwarft, you can't have more of 30 lifepoints so")
+                    team2.compositionTeam[3]!.lifePoint = 30
+                    print (" Your dwarft has now \(team2.compositionTeam[3]!.lifePoint) lifepoints")
+                    }
                 }
             default:
                 break
             }
         }
-       } // en of the function care 2
-        
-    func checkWinnerTeam1() {
-        var winner: Bool
-        for _ in team1.compositionTeam {
-            if fighter.isDead == false && colossus.isDead == false && dwarft.isDead == false {
-                
-                winner = false
-            }else {
-                    winner = true
-                    print("The winner Is \(team1.nameOfThePlayer)")
-                    print("End of game ")
-                    break
-                }
-
-            }
-        
+       } // end of the function care 2
     
-    }//    end of check Winner
-    
-    func checkWinnerTeam2() {
-        var winner: Bool
-        for _ in team2.compositionTeam {
-            if fighter.isDead == false && colossus.isDead == false && dwarft.isDead == false{
+    //function to make appear randomly a chest that contains a grenade for the team 1
+    func chestTeam1(character: Characters){
+        let random = arc4random_uniform(100)
+            if random <= 30 {
+                    print("Great ! You found a grenade 💥")
+                    let newArm = grenade
                 
-                        
-                        winner = false
-            }else{
-                    winner = true
-                
-                        print("The winner Is \(team1.nameOfThePlayer)")
-                        print("End of game ")
-                        break
-            }
+                if warriorA is Fighter && team1.compositionTeam[1] != nil {
+                    team1.compositionTeam[1]!.weapon = newArm
+            }else if warriorA is Colossus && team1.compositionTeam[2] != nil {
+                        team1.compositionTeam[2]!.weapon = newArm
+            }else if warriorA is Dwarft && team1.compositionTeam[3] != nil {
+                            team1.compositionTeam[3]!.weapon = newArm
+                        }
+                    
         }
         
-    }//    end of check Winner
     
-     
-   
+    }//    end of the function Chest team1
     
+    //function to make appear randomly a chest that contains a grenade for the team 2
+    func chestTeam2(character: Characters) {
+        let random = arc4random_uniform(100)
+
+            if random <= 30 {
+                print("Great ! You found a grenade 💥")
+                let newArm = grenade
+                if warriorC is Fighter && team2.compositionTeam[1] != nil{
+                    team2.compositionTeam[1]!.weapon = newArm
+                }else if warriorC is Colossus && team2.compositionTeam[2] != nil {
+                    team2.compositionTeam[2]!.weapon = newArm
+                }else if warriorC is Dwarft  && team2.compositionTeam[3] != nil {
+                    team2.compositionTeam[3]!.weapon = newArm
+                }
+                
+        }
+        
+        
+    }//    end of the function Chest Team2
     
+    //function bonus - meet Superman who offer a bottle of krypton water that give the life point max to warriors
+    func bonusTeam1 (){
+        let bonus = arc4random_uniform(100)
+        
+        if bonus <= 30 {
+            print("You just met Superman")
+            print("He decides to help you")
+            print("Superman offers you Krypton water")
+            print(" All your warriors have their life points max")
+
+            if team1.compositionTeam[1] != nil {
+                team1.compositionTeam[1]!.lifePoint = 100}
+            if team1.compositionTeam[2] != nil {
+                team1.compositionTeam[2]!.lifePoint = 150 }
+            if team1.compositionTeam[3] != nil {
+                team1.compositionTeam[3]!.lifePoint = 30 }
+            
+        }
+    }//    end of the function Bonus team 1
     
-    
-    
+    func bonusTeam2 (){
+        let bonus = arc4random_uniform(100)
+        
+        if bonus <= 30 {
+            print("You just met Superman")
+            print("He decides to help you")
+            print("Superman offers you Krypton water")
+            print(" All your warriors have their life points max")
+            
+            if team2.compositionTeam[1] != nil {
+                team2.compositionTeam[1]!.lifePoint = 100}
+            if team2.compositionTeam[2] != nil {
+                team2.compositionTeam[2]!.lifePoint = 150}
+            if team2.compositionTeam[3] != nil {
+                team2.compositionTeam[3]!.lifePoint = 30}
+        }
+        
+    }//    end of the function Bonus Team 2
     
 }// end of the Class
-var game = Game (warriorA: fighter, warriorB: fighter, warriorC: fighter, warriorD: fighter)
 
+
+var game = Game(warriorA: fighter, warriorB: fighter, warriorC: fighter, warriorD: fighter)

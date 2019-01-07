@@ -9,67 +9,75 @@
 import Foundation
 class Characters {
     var charactersName: String
-    var type: String
-    var isDead: Bool
     var weapon: Weapon
+    var type: String
     var lifePoint: Int
-//    var lifePoint: Int  {
-//        willSet {
-//            print("He has \(lifePoint) lifepoint")
-//
-//        }
-//            didSet {
-//            if oldValue < lifePoint {
-//                print(" Great, you win \(lifePoint - oldValue) lifepoint")
-//
-//
-//            }else if oldValue > lifePoint {
-//                print(" He lost \(lifePoint - oldValue) Lifepoint")
-//
-//
-//            }else if lifePoint <= 0 {
-//                print("Bye, he is dead")
-//
-//
-//    }
-//    }
-//    }
-   
+    {
+      willSet { // getter to check and print the lifepoints after each fighting
+        print("\(type) has \(lifePoint) lifepoint")
+
+        }
+            didSet {
+            if oldValue < lifePoint {
+                print(" Great, you win \(lifePoint - oldValue) lifepoint")
+
+
+            }else if oldValue > lifePoint {
+                print(" \(type) lost \(lifePoint - oldValue) Lifepoint")
+
+
+                }
+    }
+    }
+
    
     
 
-    init(charactersName: String, lifePoint: Int, weapon: Weapon, type: String, isDead: Bool) {
+    init(charactersName: String, weapon: Weapon, lifePoint: Int, type: String) {
         self.charactersName = charactersName
-        self.lifePoint = lifePoint
         self.weapon = weapon
+        self.lifePoint = lifePoint
         self.type = type
-        self.isDead = isDead
+       
       
         
     }
     
-    //    attack function
+    //    attacks functions for each teams
     
-    func attack (attackedTeam1: Characters) {
+    func attackTeam1 (warriorB: Characters) {
         if lifePoint > 0 {
-            if attackedTeam1.lifePoint <= 0 {
+            if warriorB.lifePoint <= 0 {
             print("this character is dead")
             }else{
-            attackedTeam1.lifePoint -= weapon.damage
-                if attackedTeam1.lifePoint <= 0 {
-                    attackedTeam1.lifePoint = 0
+            warriorB.lifePoint -= weapon.damage
+                if warriorB.lifePoint <= 0 {
+                    print("Yes, you kill his \(warriorB.type)")
             
-                }
-                    print("\(type) inflicted \(weapon.damage) to \(attackedTeam1.charactersName)")
-            }
-            } else {
-                    print("Sorry you can't attack beacause you are dead")
+                }else{
+                    print("\(warriorB.type) have now \(warriorB.lifePoint)")
+          
                 }
     }
+        }
+    }
+    func attackTeam2 (warriorD: Characters) {
+        if warriorD.lifePoint > 0 {
+            if warriorD.lifePoint <= 0 {
+                print("this character is dead")
+            }else{
+                warriorD.lifePoint -= weapon.damage
+                if warriorD.lifePoint <= 0 {
+                  print("Yes, you kill his \(warriorD.type)")
+                    
+                }else{
+                print("\(warriorD.type) have now \(warriorD.lifePoint)")
+        
+        }
+    }
     
-    
-    
-    
+        }
+            }
     
 }// end of the Class
 

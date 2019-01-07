@@ -5,7 +5,7 @@
 //  Created by ISABELLE Terwagne on 13/12/2018.
 //  Copyright © 2018 ISABELLE Terwagne. All rights reserved.
 //
-
+// class to check the name of warriors to be a unique name
 import Foundation
 class CheckNameOfWarrior {
     var nameWarrior: [String] = []

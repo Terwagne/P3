@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD037D0021D1903300D1EAD7 /* Grenade.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037CFF21D1903300D1EAD7 /* Grenade.swift */; };
 		CD5B865021C4506E00AF69CE /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFFD46F21C44D2200D0CF72 /* Characters.swift */; };
 		CDFFD46221C44CD400D0CF72 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFFD46121C44CD400D0CF72 /* main.swift */; };
 		CDFFD47721C44D2300D0CF72 /* Magus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFFD46921C44D2100D0CF72 /* Magus.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CD037CFF21D1903300D1EAD7 /* Grenade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grenade.swift; sourceTree = "<group>"; };
 		CDFFD45E21C44CD400D0CF72 /* P3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = P3; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDFFD46121C44CD400D0CF72 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CDFFD46921C44D2100D0CF72 /* Magus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Magus.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				CDFFD47421C44D2300D0CF72 /* Potion.swift */,
 				CDFFD46B21C44D2100D0CF72 /* Stick.swift */,
 				CDFFD46C21C44D2100D0CF72 /* Sword.swift */,
+				CD037CFF21D1903300D1EAD7 /* Grenade.swift */,
 			);
 			path = Weapon;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				CDFFD48121C44D2300D0CF72 /* Ax.swift in Sources */,
 				CDFFD46221C44CD400D0CF72 /* main.swift in Sources */,
 				CDFFD47821C44D2300D0CF72 /* Colossus.swift in Sources */,
+				CD037D0021D1903300D1EAD7 /* Grenade.swift in Sources */,
 				CDFFD47721C44D2300D0CF72 /* Magus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

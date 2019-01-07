@@ -1,5 +1,5 @@
 //
-//  Stick.swift
+//  Sword.swift
 //  DA IOS_P3
 //
 //  Created by ISABELLE Terwagne on 13/12/2018.
@@ -7,10 +7,11 @@
 //
 
 import Foundation
-class Stick: Weapon {
+class Grenade: Weapon {
     init() {
-        super.init(weaponName: "stick", damage: 5)
+        super.init(weaponName: "grenade", damage: 100)
     }
+       
     
 }// end of the Class
-var stick = Stick()
+var grenade = Grenade()

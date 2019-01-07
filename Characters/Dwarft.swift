@@ -9,7 +9,7 @@
 import Foundation
 class Dwarft: Characters {
     init(name: String) {
-        super.init(charactersName: name, lifePoint: 30, weapon: Ax(), type: "dwarft", isDead: false)
+        super.init(charactersName: name, weapon: ax, lifePoint: 30,  type: "dwarft")
     }
 }// end of the Class
 var dwarft = Dwarft(name: "")

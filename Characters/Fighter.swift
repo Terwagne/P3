@@ -8,8 +8,8 @@
 
 import Foundation
 class Fighter: Characters {
-    init(name: String) {
-        super.init(charactersName: name, lifePoint: 100, weapon: Sword(), type : "Fighter", isDead: false)
+    init(name: String){
+        super.init(charactersName: name, weapon: sword,  lifePoint: 100, type : "Fighter")
     }
 
 }// end of the Class
