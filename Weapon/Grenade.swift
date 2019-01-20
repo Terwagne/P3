@@ -7,11 +7,10 @@
 //
 
 import Foundation
+
 class Grenade: Weapon {
     init() {
         super.init(weaponName: "grenade", damage: 100)
     }
-       
-    
 }// end of the Class
 var grenade = Grenade()

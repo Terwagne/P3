@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class Weapon {
     let weaponName: String
     let damage: Int
@@ -14,17 +15,5 @@ class Weapon {
     init(weaponName: String, damage: Int) {
         self.weaponName = weaponName
         self.damage = damage
-        
     }
-    
-   
-   
-            
-            
-    
-        
-    
-    
-    
-    
 }// end of the Class

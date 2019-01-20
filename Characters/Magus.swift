@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class Magus: Characters {
     init(name: String) {
         super.init(charactersName: name, weapon: potion, lifePoint: 20, type: "Magus" )

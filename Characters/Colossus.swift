@@ -7,10 +7,10 @@
 //
 
 import Foundation
+
 class Colossus: Characters {
     init(name: String) {
         super.init(charactersName: name, weapon: stick, lifePoint: 150, type: "Colossus")
     }
 }// end of the Class
-
 var colossus = Colossus(name: "" )

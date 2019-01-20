@@ -7,6 +7,7 @@
 //
 // class to check the name of warriors to be a unique name
 import Foundation
+
 class CheckNameOfWarrior {
     var nameWarrior: [String] = []
     static let share = CheckNameOfWarrior()
@@ -24,12 +25,10 @@ class CheckNameOfWarrior {
                 } else {
                     nameWarrior.append(warriorName) // if the name does not existed. it's added to the collection compositionTeam
                     print("Thank you, you choose")
-                    
                 }
             }
         } while warriorName == ""
         return warriorName
     }
-    
 }
 

@@ -7,11 +7,11 @@
 //
 
 import Foundation
+
 class Fighter: Characters {
     init(name: String){
         super.init(charactersName: name, weapon: sword,  lifePoint: 100, type : "Fighter")
     }
-
 }// end of the Class
 var fighter = Fighter(name: " ")
 

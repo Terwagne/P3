@@ -7,78 +7,56 @@
 //
 
 import Foundation
+
 class Characters {
     var charactersName: String
     var weapon: Weapon
-    var type: String
-    var lifePoint: Int
-    {
-      willSet { // getter to check and print the lifepoints after each fighting
-        print("\(type) has \(lifePoint) lifepoint")
-
+    let type: String
+    var lifePoint: Int {
+        willSet { // getter to check and print the lifepoints after each fighting
+            print("\(type) has \(lifePoint) lifepoint")
         }
-            didSet {
+        didSet {
             if oldValue < lifePoint {
                 print(" Great, you win \(lifePoint - oldValue) lifepoint")
-
-
-            }else if oldValue > lifePoint {
+            } else if oldValue > lifePoint {
                 print(" \(type) lost \(lifePoint - oldValue) Lifepoint")
-
-
-                }
+            }
+        }
     }
-    }
-
-   
     
-
     init(charactersName: String, weapon: Weapon, lifePoint: Int, type: String) {
         self.charactersName = charactersName
         self.weapon = weapon
         self.lifePoint = lifePoint
         self.type = type
-       
-      
-        
     }
     
     //    attacks functions for each teams
-    
     func attackTeam1 (warriorB: Characters) {
         if lifePoint > 0 {
             if warriorB.lifePoint <= 0 {
-            print("this character is dead")
-            }else{
-            warriorB.lifePoint -= weapon.damage
+                print("this character is dead")
+            } else {
+                warriorB.lifePoint -= weapon.damage
                 if warriorB.lifePoint <= 0 {
                     print("Yes, you kill his \(warriorB.type)")
-            
-                }else{
-                    print("\(warriorB.type) have now \(warriorB.lifePoint)")
-          
                 }
-    }
+            }
         }
     }
     func attackTeam2 (warriorD: Characters) {
         if warriorD.lifePoint > 0 {
             if warriorD.lifePoint <= 0 {
                 print("this character is dead")
-            }else{
+            } else {
                 warriorD.lifePoint -= weapon.damage
                 if warriorD.lifePoint <= 0 {
-                  print("Yes, you kill his \(warriorD.type)")
-                    
-                }else{
-                print("\(warriorD.type) have now \(warriorD.lifePoint)")
-        
+                    print("Yes, you kill his \(warriorD.type)")
+                }
+            }
         }
     }
-    
-        }
-            }
-    
 }// end of the Class
 
 

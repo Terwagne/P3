@@ -7,10 +7,10 @@
 //
 
 import Foundation
+
 class Potion: Weapon {
     init() {
         super.init(weaponName: "potion", damage: (20))
     }
-    
 }// end of the Class
 var potion = Potion()

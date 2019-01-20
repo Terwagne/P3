@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class Ax: Weapon {
     init() {
         super.init(weaponName: "ax", damage: 50)
