@@ -1,0 +1,97 @@
+PROJET DA IOS P3
+BUT DU JEU : 2 équipes doivent s’affronter dans un combat à mort.
+
+Prérequis : Utilisation de Xcode
+	          Programmation en Swift
+	          Programme pour le Terminal (pas d’interface graphique)
+
+A  - CAHIER DES CHARGES
+I – Les Equipes 
+
+Au début de la partie, chaque joueur va constituer son équipe en choisissant parmi plusieurs types de personnages. 
+•	Combattant : L'attaquant classique. Un bon guerrier !
+•	Mage : Son talent ? Soigner les membres de son équipe.
+•	Colosse : Imposant et très résistant, mais il ne vous fera pas bien mal
+•	Nain : Sa hache vous infligera beaucoup de dégâts, mais il n'a pas beaucoup de points de vie.
+Contraintes :
+•	Chaque équipe doit avoir 3 personnages (peu importe le type).
+•	Les personnages doivent être nommés par les joueurs. Leur nom doit être unique parmi les personnages de la partie.
+•	Le personnage "Combattant" démarre avec 100 points de vie et une épée qui ôte 10 points à son adversaire.
+•	Le choix est libre pour définir les paramètres des autres personnages 
+II – Le combat 
+Une fois les équipes constituées, la partie démarre. Chacun à son tour, les joueurs effectuent la boucle d'action suivante :
+1.	Choisir un personnage de son équipe
+2.	Choisir un personnage de l'équipe adverse à attaquer ou un personnage de sa propre équipe à soigner dans le cas du Mage.
+Le programme va ensuite effectuer l'attaque (ou le soin) et indiquer aux joueurs ce qu'il vient de se passer. 
+Lorsqu'un personnage n'a plus de point de vie, il est mort...  Et ne peut pas être réanimé par le mage ! Lorsque tous les personnages d'une équipe sont morts, le joueur a perdu et la partie s'arrête !
+III -  Changement d’Arme
+Dans la boucle d'action du joueur décrite précédemment, nous allons ajouter une étape après l'étape 1.
+•	Choisir un personnage de son équipe
+•	Un coffre apparaît devant le personnage, il l'ouvre et... il s'équipe d'une nouvelle arme !
+•	Choisir un personnage de l'équipe adverse à attaquer ou un personnage de sa propre équipe à soigner dans le cas du Mage.
+
+Contraintes :
+Cette nouvelle étape aura lieu aléatoirement 
+Chaque personnage ne peut porter qu'une arme à la fois
+Le mage ne peut pas recevoir une arme de type Attaque mais seulement de type Soin (et inversement pour les autres personnages)
+IV – Bonus
+Une fonctionnalité supplémentaire est à implémenter. 
+Le développeur peut laisser libre cours à son imagination.
+
+CONTRAINTES GENERALES :
+•	Le code est sur Github avec un historique de commits cohérent.
+•	Le code est documenté avec des commentaires pour chaque fonction, propriété, classe au minimum.
+•	Le code est écrit en anglais : commentaires, variables…
+•	Le projet ne contient aucun warning ni erreur.
+
+DELAI DE REALISATION : deux mois. 
+
+Structure du Programme
+B - Réponse 
+I – Les équipes
+
+Le nom du joueur appelé dans la classe Team est une variable de type String.
+
+Les équipes sont constituées dans la class Team à l’aide d’un dictionnaire (la clé permet de numéroter les combattants )
+
+Le nom des combattants devant être unique, j’ai choisi d’implémenter un singleton  dans la class CheckNameOfTheWarrior qui a pour méthode de choisir un nom unique. 
+
+Le nom du mage est stocké dans une variable. Je suis partie du principe que l’on n’a pas le droit de tuer un mage. De ce fait, je ne souhaitais pas qu’il fasse parti du dictionnaire des combattants.
+
+Une fois les équipes constituées, un print est proposé afin de résumer les équipes des 2 joueurs . 
+II – Le combat
+
+Grâce au constructeur et à l’initialisation des class Characters et de celles qui héritent comme Fighter, Colossus, Dwarft et Magus. Le combat est lancé dans la class Game à partir d’une fonction simple de combat étant une méthode de la class Characters.
+ 
+Grâce au Getter – Setter de cette même classe, les points de vie sont calculés en tant réel.  
+
+
+
+III – Le changement d’arme
+
+J’ai choisi de faire apparaître de façon aléatoire une grenade ôtant 100 points de vie.
+
+Pour cela j’ai utilisé la fonction arc4random 
+En l’implémentant de la façon suivante :
+
+ 
+
+
+IV – Le Bonus
+
+J’ai choisi de faire rencontrer Superman au Mage. Superman lui offre de l’eau de Krypton qui remonte les points de vie des combattants à leur maximum. 
+
+Pour cela, j’ai également utilisée la fonction arc4random que j’ai implémenté de la façon suivante :
+
+
+ 
+
+Aussi, il est possible de changer facilement les paramètres de l’apparition aléatoire du coffre ou du bonus en augmentant les variables random et bonus.
+
+
+
+V – Fin de la Partie.
+
+J’ai créé une fonction Check winner qui permet de vérifier après chaque combat si le dictionnaire de l’équipe en question est vide. S’il ne contient plus de combattant, l’équipe adverse a remporté la partie et cela s’affiche. 
+Je jeu indique Game Over et une autre partie est lancée.
+
