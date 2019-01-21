@@ -13,6 +13,5 @@ game.presentMenu()
 while true {
     team1.attackOrCareTeam1()
     team2.attackOrCareTeam2()
-   
 }
 
